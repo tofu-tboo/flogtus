@@ -43,13 +43,21 @@ func _state(value: STATE) -> void:
 				return
 			var charged: float = charge_full - $ChargeTimer.time_left
 			var pos_tween: Tween = create_tween()
+			var szup_tween: Tween = create_tween()
 			var tween_time: float = charged * over_air_coef
 			
 			# 이동
-			pos_tween.tween_property(self, "global_position", $LandPoint.global_position, tween_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+			pos_tween.parallel().tween_property(self, ^"global_position", $LandPoint.global_position, tween_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 			pos_tween.tween_callback(step)
+			#szup_tween.tween_property(self, ^"scale", Vector2.ONE * 2, tween_time / 2).set_trans(Tween.TRANS_CIRC)
+			#szup_tween.tween_callback(
+				#func():
+					#var szdown_tween: Tween = create_tween()
+					#szdown_tween.tween_property(self, ^"scale", Vector2.ONE, tween_time / 2)
+			#)
 			
 			$Sprite.animate("jump", 0.6 / tween_time)
+			
 			
 			self.monitoring = false
 		STATE.DROWNED:

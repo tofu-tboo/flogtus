@@ -1,7 +1,24 @@
 class_name FloatingGenerator extends Generator
 
-@export var max_cnt: int = 20 # 지속적인 소환으로 느껴질 수 있는 개수여야 함.
-@export var _cnt_per_tick: int = 5 # 이번 틱의 앵커가 두 틱 전의 앵커와 충돌하지 않을 정도의 개수를 소환해야 함. 단, 적절히 restrait 되는 개수로 설정해야 함.
+var min_gap: float = 20.0:
+	set(v):
+		min_gap = v
+		max_gap = Frog.max_dist - v * 2
+		max_cnt = floor(0.91 * Utility.world_area / (PI * ((10 + 0.5 * min_gap) ** 2))) + 1
+var max_gap: float = Frog.max_dist - min_gap * 2:
+	set(v):
+		if v < min_gap:
+			return
+		max_gap = v
+		default_region_y = 2 * max_cnt * (10 + 0.5 * v)
+
+@export var max_cnt: int = floor(0.91 * Utility.world_area / (PI * ((10 + 0.5 * min_gap) ** 2))) + 1: # 지속적인 소환으로 느껴질 수 있는 개수여야 함.
+	set(v):
+		if v <= 0:
+			return
+		max_cnt = v
+		default_region_y = 2 * v * (10 + 0.5 * max_gap)
+@export var _cnt_per_tick: int = 4 # 이번 틱의 앵커가 두 틱 전의 앵커와 충돌하지 않을 정도의 개수를 소환해야 함. 단, 적절히 restrait 되는 개수로 설정해야 함.
 @export var _ratio: Array[float] = [0.95, 0.05]
 
 const _30_deg: float = PI / 6
@@ -11,8 +28,8 @@ const _floating_scenes: Array[PackedScene] = [
 ]
 var _lowest_dock: Dock = Dock.new(Vector2.DOWN * Utility.world_y, 0.0, null)
 
-var min_gap: float = 20.0
-var max_gap: float = Frog.max_dist - min_gap * 2
+var default_region_y: float = 2 * max_cnt * (10 + 0.5 * max_gap)
+
 var mutant_rate: float = 0.1 # 난이도 param
 
 var _gen_prob: Array[float] = []
@@ -34,7 +51,7 @@ func _initialize() -> void:
 func start_generation() -> void:
 	$Tick.start()
 
-func generate(hard_seeds: Array[Dock] = [], restrains: Array[Dock] = [], explode: bool = false, constraint: Rect2 = Rect2(0, -1000, Utility.world_x, 1000)) -> void:
+func generate(hard_seeds: Array[Dock] = [], restrains: Array[Dock] = [], explode: bool = false, constraint: Rect2 = Rect2(0, -default_region_y, Utility.world_x, default_region_y)) -> void:
 	#var test_msec = Time.get_ticks_msec()
 	if Counter.how_many(&"Floating") >= max_cnt:
 		return
@@ -92,6 +109,8 @@ func generate(hard_seeds: Array[Dock] = [], restrains: Array[Dock] = [], explode
 				
 				break
 	
+	if _seeds.size() > _cnt_per_tick:
+		_seeds.slice(0, _cnt_per_tick)
 	#prints("msec", Time.get_ticks_msec() - test_msec)
 
 func generate_one_with_frog_centered(type: int = -1, size: float = -1.0, pre_pos: Vector2 = Vector2.ONE * INF, pre_rot: float = INF) -> Floating:

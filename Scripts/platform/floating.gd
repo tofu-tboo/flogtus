@@ -60,6 +60,7 @@ func landed(_frog: Frog) -> void:
 	var tween := create_tween()
 	var dur:= 2.0
 
+	# TODO: Frog land 시 tween stated with no tweeners 문제?
 	tween.tween_method(
 		func(t: float) -> void:
 			var k := 8.0

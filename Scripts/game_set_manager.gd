@@ -20,12 +20,10 @@ func initialize() -> void:
 	frog.rotation = 0
 	
 	game_inited.emit()
-	
 	# other floatings
 	var hard_seed: Array[Dock] = [Dock.new(Vector2(0, Utility.world_y + 20), 0.0, null)]
 	var restrain: Array[Dock] = [Dock.make_from(main_floating)]
-	
-	%FloatingGenerator.generate(hard_seed, restrain, true, Rect2(0, -1000, Utility.world_x, Utility.world_y + 1010))
+	%FloatingGenerator.generate(hard_seed, restrain, true, Rect2(0, -%FloatingGenerator.default_region_y, Utility.world_x, Utility.world_y + %FloatingGenerator.default_region_y + 10))
 
 func game_start() -> void:
 	await %CameraManager.wait_camera_rot()

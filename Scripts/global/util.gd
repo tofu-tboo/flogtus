@@ -2,6 +2,7 @@ extends Node
 
 var world_x: int = ProjectSettings.get_setting("display/window/size/viewport_width")
 var world_y: int = ProjectSettings.get_setting("display/window/size/viewport_height")
+var world_area: int = world_x * world_y
 var world_size: Vector2i = Vector2i(world_x, world_y)
 var world_rect: Rect2 = Rect2(0, 0, world_x, world_y)
 var world_center: Vector2 = Vector2(world_x / 2, world_y / 2)
