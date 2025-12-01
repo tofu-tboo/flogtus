@@ -36,7 +36,7 @@ func _proc(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion or event is InputEventScreenDrag:
 		stable = false
 
-func on_mouse_exited():
+func on_mouse_exited() -> void:
 	downed = false
 
 func _check_hold() -> void:
@@ -46,7 +46,7 @@ func _check_hold() -> void:
 		elif Time.get_ticks_msec() - down_time >= 500:
 			hold.emit()
 			return
-		await Util.sleep(0.05)
+		await Utility.sleep(0.05)
 
 func _check_click(elapsed: int) -> void:
 	if downed:

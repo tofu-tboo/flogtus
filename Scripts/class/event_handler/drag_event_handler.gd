@@ -11,8 +11,8 @@ signal move(pointer: Vector2)
 
 var range_squared: float
 var start_pos: Vector2
-var downed = false
-var out = false
+var downed: bool = false
+var out: bool = false
 
 func _init(owner: Node, event_range: float, callback_info: Dictionary) -> void:
 	super(owner, callback_info)

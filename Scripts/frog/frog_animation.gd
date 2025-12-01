@@ -3,7 +3,7 @@ extends AnimatedSprite2D
 var walk_frame: int = 0
 
 func _ready() -> void:
-	OrderingHook.assign_order($zzz, OrderingHook.FROG_PARTICLE)
+	OrderingHook.assign_order($zzz as Node2D, OrderingHook.FROG_PARTICLE)
 
 func _on_frame_changed() -> void:
 	if self.animation == &"idle" and self.frame == 4:

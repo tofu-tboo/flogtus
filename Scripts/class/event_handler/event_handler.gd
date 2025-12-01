@@ -1,14 +1,14 @@
 extends RefCounted
 class_name EventHandler
 
-func _init(owner: Node, callback_info: Dictionary) -> void:
+func _init(owner: Node, callback_info: Dictionary[String, Callable]) -> void:
 	if callback_info.is_empty():
 		return
-	for key in callback_info:
+	for key: String in callback_info:
 		add_action(key, callback_info[key])
 	
 	if owner is CollisionObject2D:
-		owner.input_event.connect(func(_viewport: Node, event: InputEvent, _shape_idx: int): _proc(event))
+		owner.input_event.connect(func(_viewport: Node, event: InputEvent, _shape_idx: int) -> void: _proc(event))
 	elif owner is Control:
 		owner.gui_input.connect(_proc)
 
