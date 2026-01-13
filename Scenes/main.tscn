@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://xb8ryj8o3lqo" path="res://scripts/setup.gd" id="1_85g3d"]
 [ext_resource type="FontFile" uid="uid://c5pkff1ivm3k8" path="res://fonts/Gamer.ttf" id="2_choun"]
 [ext_resource type="Script" uid="uid://c5sxv6ms4abix" path="res://scripts/ui.gd" id="2_ya4ey"]
-[ext_resource type="Script" uid="uid://b2u231t1x0fkw" path="res://scripts/result_modal.gd" id="4_85g3d"]
+[ext_resource type="Script" path="res://scripts/result_modal.gd" id="4_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cev0ied4dgnpk" path="res://objects/floating_generator.tscn" id="4_choun"]
 [ext_resource type="FontFile" uid="uid://ky8fnbmv54sx" path="res://fonts/SilomBol.ttf" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bm76tnpwbani7" path="res://textures/waterfall.png" id="5_o6xl0"]
@@ -303,7 +303,7 @@ offset_right = 40.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("4_tipki")
+theme_override_fonts/font = ExtResource("2_choun")
 theme_override_font_sizes/font_size = 8
 text = "Here’s the Snakehom River."
 horizontal_alignment = 1
