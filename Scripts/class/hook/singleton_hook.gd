@@ -17,3 +17,8 @@ static func sure_only_one_load(target: Node) -> void:
 		ids[id] = true
 	else:
 		target.queue_free()
+	
+	target.tree_exited.connect(
+		func() -> void:
+			ids.erase(id)
+)

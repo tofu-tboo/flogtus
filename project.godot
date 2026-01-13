@@ -54,7 +54,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotPlayGameServices/plugin.cfg", "res://addons/admob/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
