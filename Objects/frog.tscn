@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b6v7bg41x50l0" path="res://scripts/frog/frog.gd" id="1_vwpa2"]
 [ext_resource type="Texture2D" uid="uid://idt6eqkk386l" path="res://textures/frog/frog_drown.png" id="2_ixa5d"]
-[ext_resource type="Texture2D" uid="uid://bgpmja0k7ppiw" path="res://textures/frog_jump.png" id="2_kuh1s"]
+[ext_resource type="Texture2D" uid="uid://damegmp0222wd" path="res://textures/frog/frog_jump.png" id="2_kuh1s"]
 [ext_resource type="Script" uid="uid://76hwhulrx6rf" path="res://scripts/frog/frog_animation.gd" id="3_506uw"]
 [ext_resource type="AudioStream" uid="uid://brsqh0g7pyh0d" path="res://sounds/jump.wav" id="3_ii6tf"]
 [ext_resource type="Texture2D" uid="uid://0cacxrq0lm07" path="res://textures/ui/trajectory.png" id="4_gf1tt"]
 [ext_resource type="Texture2D" uid="uid://da6bqp3102ey" path="res://textures/frog/frog_croak.png" id="5_3kgtr"]
 [ext_resource type="AudioStream" uid="uid://dipucm2iigyk4" path="res://sounds/frog_croak.mp3" id="5_giiu1"]
-[ext_resource type="Texture2D" uid="uid://beovl7p3p131p" path="res://textures/land_point.png" id="7_1lrn2"]
+[ext_resource type="Texture2D" uid="uid://cagcjne4lacoi" path="res://textures/ui/land_point.png" id="7_1lrn2"]
 [ext_resource type="Texture2D" uid="uid://cmk0vfio4dyjp" path="res://textures/frog/frog_walk.png" id="7_2v6g3"]
 [ext_resource type="Script" uid="uid://dnc54nkh3nugd" path="res://scripts/frog/land_point.gd" id="7_giiu1"]
 [ext_resource type="PackedScene" uid="uid://cauj2ey8oqrbl" path="res://objects/wave.tscn" id="9_mp1wj"]
@@ -258,9 +258,6 @@ bus = &"Effect"
 
 [node name="Wave" parent="." instance=ExtResource("9_mp1wj")]
 z_index = 0
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(0, 102)
 
 [node name="ScrNoti" type="VisibleOnScreenNotifier2D" parent="."]
 

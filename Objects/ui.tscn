@@ -1,0 +1,266 @@
+[gd_scene load_steps=19 format=3 uid="uid://dvv258s07dul2"]
+
+[ext_resource type="Script" uid="uid://c5sxv6ms4abix" path="res://scripts/ui.gd" id="1_2ddmq"]
+[ext_resource type="FontFile" uid="uid://c5pkff1ivm3k8" path="res://fonts/Gamer.ttf" id="2_5grg2"]
+[ext_resource type="FontFile" uid="uid://ky8fnbmv54sx" path="res://fonts/SilomBol.ttf" id="3_dlthr"]
+[ext_resource type="Script" uid="uid://b2u231t1x0fkw" path="res://scripts/result_modal.gd" id="4_bxqeo"]
+[ext_resource type="Texture2D" uid="uid://bxg3hty18se7d" path="res://textures/modal.png" id="5_ck4ea"]
+[ext_resource type="Script" uid="uid://bdeky2c47ycp8" path="res://scripts/discription.gd" id="6_pofux"]
+[ext_resource type="AudioStream" uid="uid://ktb3ngfuupya" path="res://sounds/frog_croak_third.mp3" id="7_q8hfb"]
+[ext_resource type="Texture2D" uid="uid://damegmp0222wd" path="res://textures/frog/frog_jump.png" id="8_pi77h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
+atlas = ExtResource("5_ck4ea")
+region = Rect2(0, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
+atlas = ExtResource("5_ck4ea")
+region = Rect2(100, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+atlas = ExtResource("5_ck4ea")
+region = Rect2(200, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp3eg"]
+atlas = ExtResource("5_ck4ea")
+region = Rect2(300, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ld40"]
+atlas = ExtResource("5_ck4ea")
+region = Rect2(400, 0, 100, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6xl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkv2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkv2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbj1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muem4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp3eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ld40")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giiu1"]
+atlas = ExtResource("8_pi77h")
+region = Rect2(90, 0, 18, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp1wj"]
+atlas = ExtResource("8_pi77h")
+region = Rect2(108, 0, 18, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_trceg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giiu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giiu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giiu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giiu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giiu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp1wj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giiu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giiu1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trceg"]
+size = Vector2(180, 320)
+
+[node name="UI" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_2ddmq")
+
+[node name="Score" type="Label" parent="."]
+visible = false
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 19.0
+theme_override_colors/font_outline_color = Color(0.290196, 0.356863, 0.278431, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_5grg2")
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Screen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -75.0
+offset_right = 58.5
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.290196, 0.356863, 0.278431, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_5grg2")
+theme_override_font_sizes/font_size = 48
+text = "FLOGTUS"
+
+[node name="Touch to Start" type="Label" parent="Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -35.5
+offset_right = 60.5
+offset_bottom = -12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.290196, 0.356863, 0.278431, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_dlthr")
+theme_override_font_sizes/font_size = 16
+text = "Touch to Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Demo" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 115.0
+offset_right = 167.0
+offset_bottom = 138.0
+theme_override_colors/font_outline_color = Color(0.290196, 0.356863, 0.278431, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_5grg2")
+text = "DEMO"
+
+[node name="ResultModal" type="Control" parent="."]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_bxqeo")
+
+[node name="Base" type="AnimatedSprite2D" parent="ResultModal"]
+clip_children = 2
+position = Vector2(50, 40)
+sprite_frames = SubResource("SpriteFrames_o6xl0")
+
+[node name="Info" type="Control" parent="ResultModal/Base"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -40.0
+offset_right = -50.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Score" type="Label" parent="ResultModal/Base/Info"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 33.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_5grg2")
+theme_override_font_sizes/font_size = 40
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Discription" type="Label" parent="ResultModal/Base/Info"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -47.0
+offset_right = 40.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_5grg2")
+theme_override_font_sizes/font_size = 12
+text = "Here’s the Snakehom River."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("6_pofux")
+
+[node name="Croak" type="AudioStreamPlayer2D" parent="ResultModal/Base/Info"]
+stream = ExtResource("7_q8hfb")
+volume_db = 10.0
+bus = &"Effect"
+
+[node name="Frog" type="AnimatedSprite2D" parent="ResultModal/Base"]
+top_level = true
+position = Vector2(8, 6)
+rotation = 2.0944
+sprite_frames = SubResource("SpriteFrames_trceg")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="RemoteTransform" type="RemoteTransform2D" parent="ResultModal/Base"]
+position = Vector2(-42, -34)
+remote_path = NodePath("../Frog")
+update_rotation = false
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="ResultModal"]
+top_level = true
+position = Vector2(90, 160)
+shape = SubResource("RectangleShape2D_trceg")
+
+[connection signal="gui_input" from="Screen" to="." method="_on_screen_gui_input"]
+[connection signal="pressed" from="ResultModal/TouchScreenButton" to="ResultModal" method="_screen_touched"]

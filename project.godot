@@ -25,6 +25,7 @@ config/windows_native_icon="res://flogtus_icon.ico"
 Utility="*res://scripts/global/util.gd"
 Data="*res://scripts/global/data.gd"
 LeapServer="*res://scripts/global/leap_server.gd"
+GodotPlayGameServices="*res://addons/GodotPlayGameServices/scripts/autoloads/godot_play_game_services.gd"
 Counter="*res://scripts/global/counter.gd"
 
 [debug]
@@ -49,7 +50,12 @@ window/size/resizable=false
 window/size/window_width_override=720
 window/size/window_height_override=1280
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_height"
 window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [file_customization]
 
@@ -63,6 +69,11 @@ folder_colors={
 
 Lotus=""
 Flower=""
+Platform=""
+Floating=""
+LotusLeaf=""
+LotusFlower=""
+Wall=""
 
 [input]
 

@@ -1,16 +1,18 @@
 [gd_scene load_steps=6 format=3 uid="uid://cauj2ey8oqrbl"]
 
-[ext_resource type="Texture2D" uid="uid://diymegrh11jmu" path="res://textures/wave.png" id="1_cbdo7"]
 [ext_resource type="Shader" uid="uid://bq31mgqpfdf3h" path="res://shaders/wave.gdshader" id="1_ul6ps"]
 [ext_resource type="Script" uid="uid://bba41b7hjvobp" path="res://scripts/wave.gd" id="2_ui1on"]
 [ext_resource type="AudioStream" uid="uid://vow0nob6cauo" path="res://sounds/splash.mp3" id="3_ui1on"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wm5m8"]
+resource_local_to_scene = true
 shader = ExtResource("1_ul6ps")
 shader_parameter/center_px = Vector2(640, 360)
 shader_parameter/outer_r_px = 128.0
 shader_parameter/thickness_px = 2.0
 shader_parameter/snap_pixels = true
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ui1on"]
 
 [node name="Wave" type="Node2D"]
 z_index = -10
@@ -20,7 +22,7 @@ script = ExtResource("2_ui1on")
 z_index = -10
 material = SubResource("ShaderMaterial_wm5m8")
 scale = Vector2(1000, 1000)
-texture = ExtResource("1_cbdo7")
+texture = SubResource("CanvasTexture_ui1on")
 
 [node name="SplashSound" type="AudioStreamPlayer2D" parent="."]
 scale = Vector2(1000, 1000)

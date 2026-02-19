@@ -11,6 +11,7 @@ const over_air_coef: float = 0.4 # 채공시간 계수
 var platform: Platform = null
 
 var is_ready: bool = false
+var controllable: bool = false
 
 static var instance: Frog = null # singleton
 
@@ -90,7 +91,9 @@ func _ready() -> void:
 	_state(STATE.LANDED)
 
 func _input(_event: InputEvent) -> void:
-	if state != STATE.LANDED and state != STATE.WALKED:
+	if not controllable:
+		return
+	elif state != STATE.LANDED and state != STATE.WALKED:
 		return
 	elif Input.is_action_just_pressed(&"Jump"):
 		'''점프 타이머 & 착지 지점 설정'''
@@ -144,7 +147,8 @@ func _check_floor() -> Platform: # TODO: 리팩토링
 
 func game_over() -> void:
 	$Wave.splash()
-	#Data.frog_die()
+	Data.frog_die()
 
 func make_controllable() -> void:
-	$CanvasLayer/TouchControl.show()
+	controllable = true
+	#$CanvasLayer/TouchControl.show()

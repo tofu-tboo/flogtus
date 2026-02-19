@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://ixv1xuchtb8b"]
+
+[ext_resource type="Script" uid="uid://dvcyigp4td43t" path="res://scripts/ui_test.gd" id="1_3nyqi"]
+[ext_resource type="PackedScene" uid="uid://dvv258s07dul2" path="res://objects/ui.tscn" id="1_i6be1"]
+[ext_resource type="FontFile" uid="uid://c5pkff1ivm3k8" path="res://fonts/Gamer.ttf" id="2_3nyqi"]
+
+[node name="UITest" type="Node"]
+script = ExtResource("1_3nyqi")
+
+[node name="UI" parent="." instance=ExtResource("1_i6be1")]
+
+[node name="Base" parent="UI/ResultModal" index="0"]
+frame = 5
+frame_progress = 1.0
+
+[node name="Discription" parent="UI/ResultModal/Base/Info" index="1"]
+theme_override_font_sizes/font_size = 12
+text = "Your species are 'AMAZING'."
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 110.0
+offset_top = 288.0
+offset_right = 172.0
+offset_bottom = 309.0
+theme_override_fonts/font = ExtResource("2_3nyqi")
+text = "res modal"
+
+[connection signal="button_down" from="CanvasLayer/Button" to="." method="init" binds= [5]]
+[connection signal="button_down" from="CanvasLayer/Button" to="UI" method="_show_result" binds= [123]]
+
+[editable path="UI"]

@@ -51,6 +51,8 @@ func _initialize() -> void:
 	
 func start_generation() -> void:
 	$Tick.start()
+func stop_generation() -> void:
+	$Tick.stop()
 
 func generate(hard_seeds: Array[Dock] = [], restrains: Array[Dock] = [], explode: bool = false, constraint: Rect2 = Rect2(0, -default_region_y, Utility.world_x, default_region_y)) -> void:
 	#var test_msec = Time.get_ticks_msec()
@@ -119,7 +121,6 @@ func generate_one_with_frog_centered(type: int = -1, size: float = -1.0, pre_pos
 	var frog: Frog = Frog.instance
 	if frog == null:
 		frog = preload("res://objects/frog.tscn").instantiate()
-		get_tree().root.add_child(frog)
 	
 	floating.no_slosh = true
 	
@@ -127,7 +128,7 @@ func generate_one_with_frog_centered(type: int = -1, size: float = -1.0, pre_pos
 	
 	# tree
 	get_tree().current_scene.add_child(floating)
-	frog.reparent(floating)
+	floating.add_child(frog) # 임시
 	
 	# transform
 	frog.position = Vector2.ZERO

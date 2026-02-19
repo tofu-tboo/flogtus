@@ -14,5 +14,5 @@ func game_start() -> void:
 	#game_inited.emit()
 	# other floatings
 	var restrain: Array[Dock] = [Dock.make_from(main_floating)]
-	%FloatingGenerator.generate([] as Array[Dock], restrain, true, Rect2(0, -%FloatingGenerator.default_region_y, Utility.world_x, Utility.world_y + %FloatingGenerator.default_region_y + 10))
+	%FloatingGenerator.generate([] as Array[Dock], restrain, false, Rect2(0, -%FloatingGenerator.default_region_y, Utility.world_x, Utility.world_y + %FloatingGenerator.default_region_y + 10))
 	%FloatingGenerator.start_generation()
