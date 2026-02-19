@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://7mya0nocro2u"]
+[gd_scene load_steps=3 format=3 uid="uid://dhncynj6bj65g"]
 
 [ext_resource type="Texture2D" uid="uid://cv8ip2tbbiup7" path="res://textures/ui/tracker.png" id="1_gg4sa"]
-[ext_resource type="Script" uid="uid://d17vyy8qxb72e" path="res://scripts/tracker.gd" id="2_h1p10"]
+[ext_resource type="Script" uid="uid://jnuimkf5jjmy" path="res://scripts/tracker.gd" id="2_h1p10"]
 
 [node name="Tracker" type="Sprite2D"]
 top_level = true
