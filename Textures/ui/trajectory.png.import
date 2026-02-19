@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c76u2pftfuyw6"
-path="res://.godot/imported/lotus_leaf_small.png-22cc32b9a31fca3c8c4cb149e1d3e80c.ctex"
+uid="uid://0cacxrq0lm07"
+path="res://.godot/imported/trajectory.png-a1e54181545ad48973c594ee8557a534.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/lotus_leaf_small.png"
-dest_files=["res://.godot/imported/lotus_leaf_small.png-22cc32b9a31fca3c8c4cb149e1d3e80c.ctex"]
+source_file="res://textures/ui/trajectory.png"
+dest_files=["res://.godot/imported/trajectory.png-a1e54181545ad48973c594ee8557a534.ctex"]
 
 [params]
 

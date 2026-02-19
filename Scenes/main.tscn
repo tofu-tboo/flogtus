@@ -1,18 +1,20 @@
-[gd_scene load_steps=33 format=3 uid="uid://bn1m4wpx3mgob"]
+[gd_scene load_steps=36 format=3 uid="uid://bn1m4wpx3mgob"]
 
 [ext_resource type="Script" uid="uid://xb8ryj8o3lqo" path="res://scripts/setup.gd" id="1_85g3d"]
 [ext_resource type="FontFile" uid="uid://c5pkff1ivm3k8" path="res://fonts/Gamer.ttf" id="2_choun"]
 [ext_resource type="Script" uid="uid://c5sxv6ms4abix" path="res://scripts/ui.gd" id="2_ya4ey"]
-[ext_resource type="Script" path="res://scripts/result_modal.gd" id="4_85g3d"]
+[ext_resource type="Script" uid="uid://b2u231t1x0fkw" path="res://scripts/result_modal.gd" id="4_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cev0ied4dgnpk" path="res://objects/floating_generator.tscn" id="4_choun"]
 [ext_resource type="FontFile" uid="uid://ky8fnbmv54sx" path="res://fonts/SilomBol.ttf" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bm76tnpwbani7" path="res://textures/waterfall.png" id="5_o6xl0"]
-[ext_resource type="Script" path="res://scripts/discription.gd" id="6_eb6dy"]
+[ext_resource type="Script" uid="uid://bdeky2c47ycp8" path="res://scripts/discription.gd" id="6_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://bxg3hty18se7d" path="res://textures/modal.png" id="6_trceg"]
 [ext_resource type="Texture2D" uid="uid://bgpmja0k7ppiw" path="res://textures/frog_jump.png" id="6_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://hqukeggu1oih" path="res://sounds/waterfall.mp3" id="8_choun"]
 [ext_resource type="AudioStream" uid="uid://ktb3ngfuupya" path="res://sounds/frog_croak_third.mp3" id="8_eb6dy"]
 [ext_resource type="AudioStream" uid="uid://kidvjeec45e6" path="res://sounds/frog_env.mp3" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://cac6o2y8uyohm" path="res://scripts/wall.gd" id="9_choun"]
+[ext_resource type="Script" uid="uid://bh321wrd4jnf2" path="res://scripts/game_set_manager.gd" id="10_a8y0u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
 atlas = ExtResource("6_trceg")
@@ -166,6 +168,8 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jkv2x"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_85g3d")
@@ -334,7 +338,11 @@ top_level = true
 position = Vector2(90, 160)
 shape = SubResource("RectangleShape2D_trceg")
 
+[node name="GameSetManager" type="Node2D" parent="."]
+script = ExtResource("10_a8y0u")
+
 [node name="FloatingGenerator" parent="." instance=ExtResource("4_choun")]
+unique_name_in_owner = true
 
 [node name="Waterfall" type="AnimatedSprite2D" parent="."]
 position = Vector2(90, 312)
@@ -360,6 +368,15 @@ parameters/looping = true
 position = Vector2(90, 160)
 current = true
 
-[connection signal="game_start" from="UI" to="FloatingGenerator" method="start_generation"]
+[node name="Wall" type="RigidBody2D" parent="."]
+position = Vector2(0, 400)
+collision_layer = 4
+script = ExtResource("9_choun")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("WorldBoundaryShape2D_jkv2x")
+
+[connection signal="game_start" from="UI" to="GameSetManager" method="game_start"]
 [connection signal="gui_input" from="UI/Screen" to="UI" method="_on_screen_gui_input"]
 [connection signal="pressed" from="UI/ResultModal/TouchScreenButton" to="UI/ResultModal" method="_screen_touched"]
+[connection signal="body_entered" from="Wall" to="Wall" method="_on_body_entered"]

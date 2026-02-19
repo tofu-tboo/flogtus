@@ -5,7 +5,7 @@
 [node name="FloatingGenerator" type="Node2D"]
 script = ExtResource("1_4ewgt")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Tick" type="Timer" parent="."]
 wait_time = 8.0
 
-[connection signal="timeout" from="Timer" to="." method="generate"]
+[connection signal="timeout" from="Tick" to="." method="generate"]

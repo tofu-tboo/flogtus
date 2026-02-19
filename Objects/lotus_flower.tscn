@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dr7vb264jubp3"]
 
 [ext_resource type="Script" uid="uid://d265xc0iw2gb4" path="res://scripts/platform/lotus_flower.gd" id="1_4in8w"]
-[ext_resource type="Texture2D" uid="uid://cjsap0xcwdasa" path="res://textures/lotus_flower_small.png" id="2_5eg23"]
+[ext_resource type="Texture2D" uid="uid://cjsap0xcwdasa" path="res://textures/platforms/floatings/lotus_flower_small.png" id="2_5eg23"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4in8w"]
 friction = 0.0
@@ -46,10 +46,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0svlr"]
 radius = 15.0
 
-[node name="LotusFlower" type="RigidBody2D" groups=["Flower", "Lotus"]]
+[node name="LotusFlower" type="RigidBody2D" groups=["Floating", "Lotus", "LotusFlower", "Platform"]]
 collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_4in8w")
-gravity_scale = 0.005
 can_sleep = false
 continuous_cd = 2
 contact_monitor = true

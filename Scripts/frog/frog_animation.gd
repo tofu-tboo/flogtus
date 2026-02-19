@@ -1,36 +1,45 @@
 extends AnimatedSprite2D
-signal landed()
+
+var walk_frame: int = 0
 
 func _on_frame_changed() -> void:
 	if self.animation == &"idle" and self.frame == 4:
 		%CroakSound.play()
 
 func _on_animation_finished() -> void:
-	self.speed_scale = 1.0
-	if self.animation == &"jump":
-		
-		landed.emit()
-		
-		# 애니메이션 트리 하드코딩
-		if self.animation == &"jump": # 착지 후에도 애니메이션 변화 없으면
+	match self.animation:
+		&"drown":
+			Frog.instance.queue_free()
+		&"land":
+			if self.animation == &"land":
+				self.play(&"idle")
+		&"walk":
+			self.scale.x = 1
 			self.play(&"idle")
-	elif self.animation == &"drown":
-		Frog.instance.queue_free()
 
-func jump_animate(speed: float) -> void:
-	self.play(&"jump")
+func animate(type: String, speed: float = 1.0) -> void:
+	var do_animate: bool = false
+	
 	self.speed_scale = speed
-	
-	if %LandPoint.is_real_jump:
-		%JumpSound.play()
-
-func drown_animate() -> void:
-	get_parent().rotation = 0
-	get_parent().z_index = -1
-	self.play(&"drown")
-	
-	%SplashSound.play()
-
-func ready_animate() -> void:
-	if self.animation == &"idle":
-		self.play(&"ready")
+	match type:
+		"jump":
+			if %LandPoint.is_real_jump:
+				%JumpSound.play()
+				do_animate = true
+		"drown":
+			get_parent().rotation = 0
+			get_parent().z_index = -1
+			do_animate = true
+		"ready":
+			if self.animation == &"idle" or self.animation == &"land":
+				do_animate = true
+				walk_frame = 0
+		
+		"walk":
+			self.scale.x = 1 if walk_frame % 2 == 0 else -1
+			walk_frame += 1
+			do_animate = true
+		"land":
+			do_animate = true
+	if do_animate:
+		self.play(StringName(type))

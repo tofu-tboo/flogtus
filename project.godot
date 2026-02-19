@@ -25,6 +25,7 @@ config/windows_native_icon="res://flogtus_icon.ico"
 Utility="*res://scripts/global/util.gd"
 Data="*res://scripts/global/data.gd"
 LeapServer="*res://scripts/global/leap_server.gd"
+Counter="*res://scripts/global/counter.gd"
 
 [debug]
 

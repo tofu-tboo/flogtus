@@ -1,13 +1,15 @@
-[gd_scene load_steps=28 format=3 uid="uid://j0ic2piyq7ay"]
+[gd_scene load_steps=32 format=3 uid="uid://j0ic2piyq7ay"]
 
 [ext_resource type="Script" uid="uid://b6v7bg41x50l0" path="res://scripts/frog/frog.gd" id="1_vwpa2"]
-[ext_resource type="Texture2D" uid="uid://dmi544wks0hta" path="res://textures/frog_drown.png" id="2_ixa5d"]
+[ext_resource type="Texture2D" uid="uid://idt6eqkk386l" path="res://textures/frog/frog_drown.png" id="2_ixa5d"]
 [ext_resource type="Texture2D" uid="uid://bgpmja0k7ppiw" path="res://textures/frog_jump.png" id="2_kuh1s"]
 [ext_resource type="Script" uid="uid://76hwhulrx6rf" path="res://scripts/frog/frog_animation.gd" id="3_506uw"]
 [ext_resource type="AudioStream" uid="uid://brsqh0g7pyh0d" path="res://sounds/jump.wav" id="3_ii6tf"]
+[ext_resource type="Texture2D" uid="uid://0cacxrq0lm07" path="res://textures/ui/trajectory.png" id="4_gf1tt"]
+[ext_resource type="Texture2D" uid="uid://da6bqp3102ey" path="res://textures/frog/frog_croak.png" id="5_3kgtr"]
 [ext_resource type="AudioStream" uid="uid://dipucm2iigyk4" path="res://sounds/frog_croak.mp3" id="5_giiu1"]
-[ext_resource type="AudioStream" uid="uid://vow0nob6cauo" path="res://sounds/splash.mp3" id="6_giiu1"]
 [ext_resource type="Texture2D" uid="uid://beovl7p3p131p" path="res://textures/land_point.png" id="7_1lrn2"]
+[ext_resource type="Texture2D" uid="uid://cmk0vfio4dyjp" path="res://textures/frog/frog_walk.png" id="7_2v6g3"]
 [ext_resource type="Script" uid="uid://dnc54nkh3nugd" path="res://scripts/frog/land_point.gd" id="7_giiu1"]
 [ext_resource type="PackedScene" uid="uid://cauj2ey8oqrbl" path="res://objects/wave.tscn" id="9_mp1wj"]
 
@@ -31,13 +33,13 @@ region = Rect2(54, 0, 18, 22)
 atlas = ExtResource("2_ixa5d")
 region = Rect2(72, 0, 18, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_giiu1"]
-atlas = ExtResource("2_kuh1s")
-region = Rect2(90, 0, 18, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwlpq"]
+atlas = ExtResource("5_3kgtr")
+region = Rect2(0, 0, 18, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mp1wj"]
-atlas = ExtResource("2_kuh1s")
-region = Rect2(108, 0, 18, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_po743"]
+atlas = ExtResource("5_3kgtr")
+region = Rect2(18, 0, 18, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixa5d"]
 atlas = ExtResource("2_kuh1s")
@@ -67,6 +69,14 @@ region = Rect2(0, 0, 18, 20)
 atlas = ExtResource("2_kuh1s")
 region = Rect2(18, 0, 18, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqpmm"]
+atlas = ExtResource("7_2v6g3")
+region = Rect2(0, 0, 18, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b0uu"]
+atlas = ExtResource("5_3kgtr")
+region = Rect2(0, 0, 18, 20)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_vwpa2"]
 animations = [{
 "frames": [{
@@ -94,28 +104,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_giiu1")
+"texture": SubResource("AtlasTexture_lwlpq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_giiu1")
+"texture": SubResource("AtlasTexture_lwlpq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_giiu1")
+"texture": SubResource("AtlasTexture_lwlpq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_giiu1")
+"texture": SubResource("AtlasTexture_lwlpq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_giiu1")
+"texture": SubResource("AtlasTexture_lwlpq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mp1wj")
+"texture": SubResource("AtlasTexture_po743")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_giiu1")
+"texture": SubResource("AtlasTexture_lwlpq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_giiu1")
+"texture": SubResource("AtlasTexture_lwlpq")
 }],
 "loop": true,
 "name": &"idle",
@@ -130,7 +140,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2v6g3")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gf1tt")
 }, {
@@ -138,7 +153,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_dsk4o")
 }],
 "loop": false,
-"name": &"jump",
+"name": &"land",
 "speed": 5.0
 }, {
 "frames": [{
@@ -151,16 +166,26 @@ animations = [{
 "loop": false,
 "name": &"ready",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqpmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b0uu")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_giiu1"]
-size = Vector2(1, 1)
+size = Vector2(3, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kuh1s"]
 size = Vector2(180, 320)
 
 [node name="Frog" type="Area2D"]
-z_index = 10
 collision_layer = 2
 monitorable = false
 script = ExtResource("1_vwpa2")
@@ -168,31 +193,48 @@ metadata/_custom_type_script = "uid://b6v7bg41x50l0"
 
 [node name="LandPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("7_giiu1")
 
-[node name="Sprite2D" type="Sprite2D" parent="LandPoint"]
+[node name="SpriteRemote" type="RemoteTransform2D" parent="LandPoint"]
+position = Vector2(0, 2)
+remote_path = NodePath("../Sprite")
+update_rotation = false
+
+[node name="TrajectoryRemote" type="RemoteTransform2D" parent="LandPoint"]
+position = Vector2(-4, 11)
+remote_path = NodePath("../Trajectory")
+update_scale = false
+
+[node name="Sprite" type="Sprite2D" parent="LandPoint"]
+top_level = true
 texture_filter = 1
+position = Vector2(0, 2)
 texture = ExtResource("7_1lrn2")
 
+[node name="Trajectory" type="Sprite2D" parent="LandPoint"]
+top_level = true
+texture_repeat = 2
+position = Vector2(-4, 11)
+texture = ExtResource("4_gf1tt")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 0)
+
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 5
 sprite_frames = SubResource("SpriteFrames_vwpa2")
-animation = &"idle"
+animation = &"drown"
 autoplay = "idle"
 script = ExtResource("3_506uw")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_giiu1")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-3.57628e-07, 1)
-scale = Vector2(0.9, 0.9)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 20
 
 [node name="TouchControl" type="TouchScreenButton" parent="CanvasLayer"]
-visible = false
 position = Vector2(90, 160)
 shape = SubResource("RectangleShape2D_kuh1s")
 action = "Jump"
@@ -214,15 +256,14 @@ stream = ExtResource("5_giiu1")
 volume_db = 15.0
 bus = &"Effect"
 
-[node name="SplashSound" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("6_giiu1")
-volume_db = 2.0
-bus = &"Effect"
-
 [node name="Wave" parent="." instance=ExtResource("9_mp1wj")]
+z_index = 0
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 102)
+
+[node name="ScrNoti" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="animation_finished" from="Sprite" to="Sprite" method="_on_animation_finished"]
 [connection signal="frame_changed" from="Sprite" to="Sprite" method="_on_frame_changed"]
-[connection signal="landed" from="Sprite" to="." method="land"]
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="CanvasLayer/TouchControl" method="show"]
+[connection signal="screen_entered" from="ScrNoti" to="." method="make_controllable"]

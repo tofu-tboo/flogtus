@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj3epkv6qdvkt"
-path="res://.godot/imported/lotus_leaf_tini.png-889aea84a7465a7bcdb9ce5931cec146.ctex"
+uid="uid://damegmp0222wd"
+path="res://.godot/imported/frog_jump.png-cfdaaf393d8a93a8d5534ece96e4dfeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/lotus_leaf_tini.png"
-dest_files=["res://.godot/imported/lotus_leaf_tini.png-889aea84a7465a7bcdb9ce5931cec146.ctex"]
+source_file="res://textures/frog/frog_jump.png"
+dest_files=["res://.godot/imported/frog_jump.png-cfdaaf393d8a93a8d5534ece96e4dfeb.ctex"]
 
 [params]
 

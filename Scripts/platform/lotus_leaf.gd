@@ -1,30 +1,23 @@
 class_name LotusLeaf extends Lotus
-
+	
 enum SIZE { TINI = 10, SMALL = 15, MEDIUM = 20, BIG = 25, LARGE = 30 }
-
-var shape_size: int = 0
+@export var auto_sizing: bool = true
 
 func _ready() -> void:
 	super()
 	
-	$Shape.shape.radius = shape_size
-	
-	match shape_size:
-		SIZE.TINI:
-			$Sprite.texture = load("res://textures/lotus_leaf_tini.png")
-		SIZE.SMALL:
-			$Sprite.texture = load("res://textures/lotus_leaf_small.png")
-		SIZE.MEDIUM:
-			$Sprite.texture = load("res://textures/lotus_leaf_medium.png")
-		SIZE.BIG:
-			$Sprite.texture = load("res://textures/lotus_leaf_big.png")
-		SIZE.LARGE:
-			$Sprite.texture = load("res://textures/lotus_leaf_large.png")
+	assert($Shape.shape is CircleShape2D)
 	
 	has_state = false
 	can_collapse = false
+	
+	if not auto_sizing:
+		return
+	
+	var size: int = _rand_size()
+	assign_size(size)
 
-static func rand_size() -> SIZE:
+static func _rand_size() -> SIZE:
 	var ratio: float = randf()
 	
 	if ratio > 0.65: # 35%
@@ -37,7 +30,21 @@ static func rand_size() -> SIZE:
 		return SIZE.SMALL
 	else: # 5%
 		return SIZE.TINI
-
-func set_size(size: int) -> void:
-	shape_size = size
 	
+func get_space_radius() -> float:
+	return $Shape.shape.radius
+
+func assign_size(size: float) -> void:
+	$Shape.shape.radius = floor(size)
+	
+	match int(size):
+		SIZE.TINI:
+			$Sprite.texture = load("res://textures/platforms/floatings/lotus_leaf_tini.png")
+		SIZE.SMALL:
+			$Sprite.texture = load("res://textures/platforms/floatings/lotus_leaf_small.png")
+		SIZE.MEDIUM:
+			$Sprite.texture = load("res://textures/platforms/floatings/lotus_leaf_medium.png")
+		SIZE.BIG:
+			$Sprite.texture = load("res://textures/platforms/floatings/lotus_leaf_big.png")
+		SIZE.LARGE:
+			$Sprite.texture = load("res://textures/platforms/floatings/lotus_leaf_large.png")

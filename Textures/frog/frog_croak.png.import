@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3g2b4aekeqhs"
-path="res://.godot/imported/lotus_leaf_big.png-e6579a1d887cb086a707578cb7e18144.ctex"
+uid="uid://da6bqp3102ey"
+path="res://.godot/imported/frog_croak.png-56706ab297526aaa45d69b391d4af582.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/lotus_leaf_big.png"
-dest_files=["res://.godot/imported/lotus_leaf_big.png-e6579a1d887cb086a707578cb7e18144.ctex"]
+source_file="res://textures/frog/frog_croak.png"
+dest_files=["res://.godot/imported/frog_croak.png-56706ab297526aaa45d69b391d4af582.ctex"]
 
 [params]
 

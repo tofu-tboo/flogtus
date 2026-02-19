@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4yofcght6nqb"
-path="res://.godot/imported/lotus_leaf_large.png-00e4d9d8639f5dbf43e0801f0466a802.ctex"
+uid="uid://dat0t07jtoymn"
+path="res://.godot/imported/frog_walk.png-f6b933ecd218424b6ba77b0acc30ed34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/lotus_leaf_large.png"
-dest_files=["res://.godot/imported/lotus_leaf_large.png-00e4d9d8639f5dbf43e0801f0466a802.ctex"]
+source_file="res://textures/frog_walk.png"
+dest_files=["res://.godot/imported/frog_walk.png-f6b933ecd218424b6ba77b0acc30ed34.ctex"]
 
 [params]
 
